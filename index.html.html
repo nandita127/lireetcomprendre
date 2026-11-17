@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIRE ET COMPRENDRE - Niveau A2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#F5EFE6',
+                        beige: '#E8DFD3',
+                        warmBrown: '#5C4033',
+                        burgundy: '#800020',
+                        burgundyLight: '#A31535',
+                        textDark: '#2C2520'
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #F5EFE6; color: #2C2520; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        .text-box {
+            background-color: #FFFFFF;
+            border-left: 4px solid #800020;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        .option-label { transition: all 0.2s ease-in-out; }
+        .option-label:hover { border-color: #800020; background-color: #FDFBF8; }
+        input[type="radio"]:not(:disabled):checked + .option-content {
+            border-color: #800020;
+            background-color: #FDFBF8;
+            box-shadow: 0 0 0 1px #800020;
+        }
+        input[type="radio"]:not(:disabled):checked + .option-content .radio-circle {
+            border-color: #800020;
+        }
+        input[type="radio"]:not(:disabled):checked + .option-content .radio-circle::after {
+            content: '';
+            display: block;
+            width: 10px;
+            height: 10px;
+            background-color: #800020;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #F5EFE6; }
+        ::-webkit-scrollbar-thumb { background: #C4B5A5; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #5C4033; }
+        .fade-in { animation: fadeIn 0.4s ease-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-beige">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="navigate('home')">
+                    <svg class="w-8 h-8 text-burgundy mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    <span class="font-serif font-bold text-xl text-warmBrown hidden sm:block">LIRE ET COMPRENDRE</span>
+                </div>
+                <div class="flex space-x-2 sm:space-x-4">
+                    <button onclick="navigate('matieres-menu')" class="text-sm font-medium text-warmBrown hover:text-burgundy px-3 py-2 rounded-md transition">Matières</button>
+                    <button onclick="navigate('exercices-intro')" class="text-sm font-medium text-warmBrown hover:text-burgundy px-3 py-2 rounded-md transition">Exercices</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
+
+        <!-- ================= ACCUEIL ================= -->
+        <div id="home" class="page fade-in flex flex-col items-center justify-center text-center mt-8 sm:mt-16">
+            <div class="mb-6 text-burgundy">
+                <svg class="w-24 h-24 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            </div>
+            <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-warmBrown mb-4 tracking-tight">
+                LIRE ET COMPRENDRE
+            </h1>
+            <h2 class="text-lg sm:text-xl text-burgundy font-medium tracking-widest mb-8">
+                COMPRÉHENSION ÉCRITE – NIVEAU A2
+            </h2>
+            <p class="max-w-2xl text-lg text-textDark mb-12 leading-relaxed">
+                Bienvenue dans notre espace d'apprentissage ! Découvrez des textes, apprenez de nouvelles stratégies de lecture et améliorez votre compréhension écrite en français.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 w-full max-w-md sm:max-w-2xl justify-center">
+                <button onclick="navigate('matieres-menu')" class="flex-1 glass-card hover:bg-white transition p-6 rounded-xl flex items-center justify-start group">
+                    <div class="bg-beige p-3 rounded-lg group-hover:bg-burgundy group-hover:text-white transition text-warmBrown">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    </div>
+                    <div class="ml-4 text-left">
+                        <h3 class="font-serif font-bold text-xl text-warmBrown">MATIÈRES</h3>
+                        <p class="text-sm text-textDark mt-1">Apprendre les stratégies</p>
+                    </div>
+                </button>
+
+                <button onclick="navigate('exercices-intro')" class="flex-1 glass-card hover:bg-white transition p-6 rounded-xl flex items-center justify-start group">
+                    <div class="bg-beige p-3 rounded-lg group-hover:bg-burgundy group-hover:text-white transition text-warmBrown">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                    </div>
+                    <div class="ml-4 text-left">
+                        <h3 class="font-serif font-bold text-xl text-warmBrown">EXERCICES</h3>
+                        <p class="text-sm text-textDark mt-1">Tester ses connaissances</p>
+                    </div>
+                </button>
+            </div>
+
+            <button onclick="navigate('matieres-menu')" class="mt-12 bg-burgundy hover:bg-burgundyLight text-white font-medium py-3 px-8 rounded-full shadow-lg transition transform hover:-translate-y-1">
+                COMMENCER
+            </button>
+        </div>
+
+        <!-- ================= MATIÈRES MENU ================= -->
+        <div id="matieres-menu" class="page hidden fade-in">
+            <div class="text-center mb-10">
+                <h2 class="font-serif text-3xl font-bold text-warmBrown mb-2">LIRE ET COMPRENDRE</h2>
+                <p class="text-burgundy font-medium tracking-wide">COMPRÉHENSION ÉCRITE – NIVEAU A2</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="matieres-list">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- ================= MATIÈRE DETAIL ================= -->
+        <div id="matiere-detail" class="page hidden fade-in max-w-3xl mx-auto">
+            <button onclick="navigate('matieres-menu')" class="mb-6 flex items-center text-sm font-medium text-warmBrown hover:text-burgundy transition">
+                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                Retour aux matières
+            </button>
+            
+            <div class="glass-card bg-white/80 p-6 sm:p-10 rounded-2xl shadow-sm">
+                <h2 id="matiere-title" class="font-serif text-2xl sm:text-3xl font-bold text-warmBrown mb-2"></h2>
+                <h3 id="matiere-subtitle" class="text-lg text-burgundy font-medium mb-8 pb-4 border-b border-beige"></h3>
+                
+                <div id="matiere-content" class="prose prose-stone max-w-none text-textDark">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <div class="flex justify-between mt-8">
+                <button id="btn-prev-matiere" class="px-5 py-2 bg-beige text-warmBrown rounded-lg font-medium hover:bg-warmBrown hover:text-white transition disabled:opacity-50">Précédent</button>
+                <button id="btn-next-matiere" class="px-5 py-2 bg-burgundy text-white rounded-lg font-medium hover:bg-burgundyLight transition disabled:opacity-50">Suivant</button>
+            </div>
+        </div>
+
+        <!-- ================= EXERCICES INTRO ================= -->
+        <div id="exercices-intro" class="page hidden fade-in max-w-2xl mx-auto text-center mt-10">
+            <div class="glass-card bg-white p-8 sm:p-12 rounded-2xl shadow-sm">
+                <div class="w-20 h-20 bg-beige rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-10 h-10 text-burgundy" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                </div>
+                <h2 class="font-serif text-3xl font-bold text-warmBrown mb-2">EXERCICES DE COMPRÉHENSION ÉCRITE</h2>
+                <p class="text-burgundy font-medium tracking-wide mb-8">NIVEAU A2</p>
+                
+                <div class="bg-cream rounded-xl p-6 text-left mb-8">
+                    <ul class="space-y-3 text-textDark">
+                        <li class="flex items-center"><svg class="w-5 h-5 text-burgundy mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <strong>Nombre de questions :</strong> 20</li>
+                        <li class="flex items-center"><svg class="w-5 h-5 text-burgundy mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <strong>Consigne :</strong> Lisez attentivement chaque texte, puis choisissez la bonne réponse parmi les propositions A, B, C ou D.</li>
+                        <li class="flex items-center"><svg class="w-5 h-5 text-burgundy mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> <strong>Barème :</strong> 5 points par bonne réponse (Score max: 100).</li>
+                    </ul>
+                </div>
+
+                <button onclick="startQuiz()" class="bg-burgundy hover:bg-burgundyLight text-white font-medium py-3 px-10 rounded-full shadow-md transition w-full sm:w-auto">
+                    COMMENCER L'EXERCICE
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= QUIZ CONTAINER ================= -->
+        <div id="quiz-container" class="page hidden fade-in max-w-4xl mx-auto">
+            <!-- Progress Bar -->
+            <div class="bg-white rounded-full h-3 w-full mb-6 shadow-sm overflow-hidden">
+                <div id="quiz-progress" class="bg-burgundy h-3 rounded-full transition-all duration-300" style="width: 5%"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-6">
+                <!-- Text Section -->
+                <div class="w-full md:w-1/2">
+                    <div class="glass-card bg-white p-6 rounded-2xl shadow-sm md:sticky md:top-24 max-h-[80vh] overflow-y-auto">
+                        <div id="quiz-text-type" class="text-xs font-bold tracking-widest text-burgundy uppercase mb-2"></div>
+                        <div id="quiz-text-content" class="text-textDark leading-relaxed text-box prose prose-sm"></div>
+                    </div>
+                </div>
+
+                <!-- Question Section -->
+                <div class="w-full md:w-1/2">
+                    <div class="glass-card bg-white p-6 sm:p-8 rounded-2xl shadow-sm">
+                        <div class="flex justify-between items-center mb-6">
+                            <span id="quiz-q-num" class="bg-beige text-warmBrown font-bold px-3 py-1 rounded-full text-sm"></span>
+                        </div>
+                        
+                        <h3 id="quiz-question-text" class="text-xl font-medium text-warmBrown mb-6 leading-tight"></h3>
+                        
+                        <div id="quiz-options" class="space-y-3">
+                            <!-- Options injected here -->
+                        </div>
+                        
+                        <!-- Immediate Feedback -->
+                        <div id="quiz-feedback" class="mt-6 hidden"></div>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="flex justify-between items-center mt-6">
+                        <button id="btn-prev-q" class="px-5 py-3 bg-white text-warmBrown rounded-xl font-medium shadow-sm hover:bg-beige transition disabled:opacity-30 disabled:cursor-not-allowed">
+                            Précédent
+                        </button>
+                        <div class="flex space-x-3">
+                            <button id="btn-valider-q" onclick="validateAnswer()" class="px-5 py-3 bg-warmBrown text-white rounded-xl font-medium shadow-sm hover:bg-textDark transition disabled:opacity-50 disabled:cursor-not-allowed hidden">
+                                Valider
+                            </button>
+                            <button id="btn-next-q" class="px-5 py-3 bg-burgundy text-white rounded-xl font-medium shadow-sm hover:bg-burgundyLight transition hidden">
+                                Suivant
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Indicator grid -->
+                    <div class="mt-8 pt-6 border-t border-beige">
+                        <p class="text-xs font-medium text-textDark mb-3 uppercase tracking-wider text-center">Progression</p>
+                        <div id="quiz-indicators" class="flex flex-wrap justify-center gap-2">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= RESULTS ================= -->
+        <div id="results-container" class="page hidden fade-in max-w-4xl mx-auto pb-10">
+            <div class="glass-card bg-white p-8 sm:p-12 rounded-3xl shadow-sm text-center mb-8 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-2 bg-burgundy"></div>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-warmBrown mb-6">Résultats</h2>
+                
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-8 mb-8">
+                    <!-- Score Circle -->
+                    <div class="relative w-40 h-40">
+                        <svg class="w-full h-full" viewBox="0 0 36 36">
+                            <path class="text-beige" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"/>
+                            <path id="score-circle-path" class="text-burgundy" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <span id="score-text" class="text-4xl font-serif font-bold text-warmBrown">0</span>
+                            <span class="text-sm text-textDark font-medium">/ 100</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats -->
+                    <div class="text-left space-y-4">
+                        <div class="flex items-center bg-green-50 px-4 py-3 rounded-lg border border-green-100">
+                            <svg class="w-6 h-6 text-green-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <div>
+                                <p class="text-sm text-green-800 font-medium">Bonnes réponses</p>
+                                <p id="correct-count" class="text-xl font-bold text-green-700">0</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center bg-red-50 px-4 py-3 rounded-lg border border-red-100">
+                            <svg class="w-6 h-6 text-red-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            <div>
+                                <p class="text-sm text-red-800 font-medium">Mauvaises réponses</p>
+                                <p id="incorrect-count" class="text-xl font-bold text-red-700">0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+                    <button onclick="navigate('home')" class="px-6 py-3 bg-white text-warmBrown border border-beige rounded-full font-medium hover:bg-beige transition">Retour à l'accueil</button>
+                    <button onclick="startQuiz()" class="px-6 py-3 bg-burgundy text-white rounded-full font-medium hover:bg-burgundyLight transition shadow-md">Recommencer les exercices</button>
+                </div>
+            </div>
+
+            <h3 class="font-serif text-2xl font-bold text-warmBrown mb-6 px-2">Correction détaillée</h3>
+            <div id="correction-list" class="space-y-6">
+                <!-- Corrections injected here -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Custom Confirm Modal -->
+    <div id="confirm-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-textDark/60 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl p-8 max-w-sm w-full mx-4 shadow-2xl transform transition-all">
+            <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 mb-4">
+                <svg class="h-6 w-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            </div>
+            <h3 class="text-lg leading-6 font-medium text-center text-warmBrown mb-2">Terminer l'exercice ?</h3>
+            <p id="unanswered-warning" class="text-sm text-textDark text-center mb-6"></p>
+            <div class="flex flex-col space-y-3">
+                <button onclick="submitQuiz()" class="w-full inline-flex justify-center rounded-xl border border-transparent shadow-sm px-4 py-3 bg-burgundy text-base font-medium text-white hover:bg-burgundyLight focus:outline-none transition">
+                    Oui, terminer
+                </button>
+                <button onclick="closeConfirmModal()" class="w-full inline-flex justify-center rounded-xl border border-beige shadow-sm px-4 py-3 bg-white text-base font-medium text-warmBrown hover:bg-beige focus:outline-none transition">
+                    Non, annuler
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data & Script -->
+    <script>
+        // ================= DATA: MATIÈRES =================
+        const matieresData = [
+            {
+                id: 1,
+                title: "MATIÈRE 1",
+                subtitle: "COMPRENDRE L’IDÉE GÉNÉRALE (Memahami gagasan umum)",
+                content: `
+                    <p>Pada bagian ini, kamu belajar memahami topik dan gagasan utama dari sebuah teks. Tidak perlu memahami setiap kata, cukup temukan informasi yang paling penting.</p>
+                    <p><strong>Hal yang perlu diperhatikan:</strong></p>
+                    <ul>
+                        <li><strong>Le sujet :</strong> topik yang dibahas.</li>
+                        <li><strong>L’idée principale :</strong> gagasan utama.</li>
+                        <li><strong>Les informations importantes :</strong> informasi penting.</li>
+                    </ul>
+                    
+                    <h4 class="text-burgundy font-bold mt-6 mb-2 uppercase text-sm">EXEMPLE 1</h4>
+                    <div class="text-box">
+                        <strong>Texte :</strong><br>
+                        « Bonjour ! Je m'appelle Léa. J'habite à Paris avec ma famille. Le week-end, j'aime visiter les musées et me promener dans les parcs. Je préfère les activités en plein air parce que j'aime la nature. »
+                    </div>
+                    <p><strong>Questions :</strong></p>
+                    <ol>
+                        <li>De quoi parle principalement ce texte ?</li>
+                        <li>Qu'est-ce que Léa aime faire le week-end ?</li>
+                    </ol>
+
+                    <h4 class="text-burgundy font-bold mt-6 mb-2 uppercase text-sm">EXEMPLE 2</h4>
+                    <div class="text-box">
+                        <strong>Texte :</strong><br>
+                        « Marc est étudiant à Lyon. Chaque matin, il prend le bus pour aller à l'université. Après les cours, il retrouve souvent ses amis à la bibliothèque pour étudier ensemble. »
+                    </div>
+                    <p><strong>Questions :</strong></p>
+                    <ol>
+                        <li>De quoi parle principalement ce texte ?</li>
+                        <li>Où Marc retrouve-t-il ses amis après les cours ?</li>
+                    </ol>
+
+                    <hr class="my-6 border-beige">
+                    <h4 class="text-warmBrown font-bold text-lg mb-4">RÉPONSES ET EXPLICATIONS</h4>
+                    
+                    <p><strong>Exemple 1</strong></p>
+                    <p><strong>1. Les activités de Léa pendant le week-end.</strong><br>
+                    <span class="text-sm text-gray-600">Penjelasan: Teks membahas kegiatan yang disukai Léa saat akhir pekan, seperti mengunjungi museum dan berjalan-jalan di taman.</span></p>
+                    <p><strong>2. Elle aime visiter les musées et se promener dans les parcs.</strong><br>
+                    <span class="text-sm text-gray-600">Penjelasan: Jawaban terdapat secara langsung pada kalimat ketiga.</span></p>
+
+                    <p class="mt-4"><strong>Exemple 2</strong></p>
+                    <p><strong>1. La vie quotidienne de Marc en tant qu'étudiant.</strong><br>
+                    <span class="text-sm text-gray-600">Penjelasan: Teks menceritakan rutinitas Marc sebagai mahasiswa, mulai dari pergi ke universitas hingga belajar bersama teman-temannya.</span></p>
+                    <p><strong>2. À la bibliothèque.</strong><br>
+                    <span class="text-sm text-gray-600">Penjelasan: Informasi tersebut terdapat pada kalimat terakhir.</span></p>
+                `
+            },
+            {
+                id: 2,
+                title: "MATIÈRE 2",
+                subtitle: "TROUVER DES INFORMATIONS PRÉCISES (Menemukan informasi khusus)",
+                content: `
+                    <p>Pada bagian ini, kamu belajar menemukan informasi tertentu yang tertulis secara langsung di dalam teks, seperti nama, tempat, waktu, tanggal, harga, dan kegiatan.</p>
+                    <p><strong>Kata tanya yang sering digunakan:</strong></p>
+                    <ul>
+                        <li><strong>Qui :</strong> siapa</li>
+                        <li><strong>Où :</strong> di mana</li>
+                        <li><strong>Quand :</strong> kapan</li>
+                        <li><strong>Comment :</strong> bagaimana</li>
+                        <li><strong>Combien :</strong> berapa</li>
+                        <li><strong>Pourquoi :</strong> mengapa</li>
+                    </ul>
+
+                    <h4 class="text-burgundy font-bold mt-6 mb-2 uppercase text-sm">EXEMPLE 1</h4>
+                    <div class="text-box">
+                        <strong>Texte :</strong><br>
+                        « Le festival de musique aura lieu samedi 15 juin, de 14 h à 20 h, sur la place centrale. L'entrée est gratuite. Les visiteurs pourront écouter des concerts et participer à plusieurs activités. »
+                    </div>
+                    <p><strong>Questions :</strong></p>
+                    <ol>
+                        <li>Quand aura lieu le festival ?</li>
+                        <li>Où se déroule l'événement ?</li>
+                        <li>À quelle heure commence le festival ?</li>
+                        <li>Combien coûte l'entrée ?</li>
+                    </ol>
+
+                    <h4 class="text-burgundy font-bold mt-6 mb-2 uppercase text-sm">EXEMPLE 2</h4>
+                    <div class="text-box">
+                        <strong>Texte :</strong><br>
+                        « La bibliothèque municipale est ouverte du lundi au vendredi, de 9 h à 18 h. Elle se trouve au 12 rue Victor Hugo. Les étudiants peuvent emprunter cinq livres pendant deux semaines. »
+                    </div>
+                    <p><strong>Questions :</strong></p>
+                    <ol>
+                        <li>Où se trouve la bibliothèque ?</li>
+                        <li>Quels jours est-elle ouverte ?</li>
+                        <li>À quelle heure ferme-t-elle ?</li>
+                        <li>Combien de livres les étudiants peuvent-ils emprunter ?</li>
+                    </ol>
+
+                    <hr class="my-6 border-beige">
+                    <h4 class="text-warmBrown font-bold text-lg mb-4">RÉPONSES ET EXPLICATIONS</h4>
+                    
+                    <p><strong>Exemple 1</strong></p>
+                    <p><strong>1. Samedi 15 juin.</strong><br><span class="text-sm text-gray-600">Penjelasan: Tanggal pelaksanaan festival disebutkan pada kalimat pertama.</span></p>
+                    <p><strong>2. Sur la place centrale.</strong><br><span class="text-sm text-gray-600">Penjelasan: Lokasi festival tertulis secara langsung dalam teks.</span></p>
+                    <p><strong>3. À 14 h.</strong><br><span class="text-sm text-gray-600">Penjelasan: Festival dimulai pukul 14.00.</span></p>
+                    <p><strong>4. L'entrée est gratuite.</strong><br><span class="text-sm text-gray-600">Penjelasan: Teks menyebutkan bahwa pengunjung tidak perlu membayar tiket masuk.</span></p>
+
+                    <p class="mt-4"><strong>Exemple 2</strong></p>
+                    <p><strong>1. Au 12 rue Victor Hugo.</strong><br><span class="text-sm text-gray-600">Penjelasan: Alamat perpustakaan disebutkan pada kalimat kedua.</span></p>
+                    <p><strong>2. Du lundi au vendredi.</strong><br><span class="text-sm text-gray-600">Penjelasan: Perpustakaan buka dari Senin sampai Jumat.</span></p>
+                    <p><strong>3. À 18 h.</strong><br><span class="text-sm text-gray-600">Penjelasan: Jam tutup perpustakaan adalah pukul 18.00.</span></p>
+                    <p><strong>4. Cinq livres.</strong><br><span class="text-sm text-gray-600">Penjelasan: Mahasiswa dapat meminjam lima buku selama dua minggu.</span></p>
+                `
+            },
+            {
+                id: 3,
+                title: "MATIÈRE 3",
+                subtitle: "COMPRENDRE LE VOCABULAIRE EN CONTEXTE (Memahami kosakata berdasarkan konteks)",
+                content: `
+                    <p>Ketika menemukan kata yang tidak dikenal, cobalah memahami artinya melalui kalimat atau informasi di sekitarnya. Kamu tidak harus mengetahui arti setiap kata untuk memahami isi teks.</p>
+                    <p><strong>Cara memahaminya:</strong></p>
+                    <ul>
+                        <li><strong>Lire la phrase :</strong> membaca kalimat.</li>
+                        <li><strong>Observer le contexte :</strong> memperhatikan konteks.</li>
+                        <li><strong>Chercher des indices :</strong> mencari petunjuk dari kata-kata di sekitarnya.</li>
+                    </ul>
+
+                    <h4 class="text-burgundy font-bold mt-6 mb-2 uppercase text-sm">EXEMPLE 1</h4>
+                    <div class="text-box">
+                        <strong>Texte :</strong><br>
+                        « Il fait très froid aujourd'hui. Marie porte un manteau, une écharpe et des gants avant de sortir. »
+                    </div>
+                    <p><strong>Question :</strong> Que signifie probablement le mot « froid » dans ce texte ?</p>
+                    <ul class="list-none pl-0">
+                        <li>A. Une température basse.</li>
+                        <li>B. Une température élevée.</li>
+                        <li>C. Un temps très chaud.</li>
+                    </ul>
+
+                    <h4 class="text-burgundy font-bold mt-6 mb-2 uppercase text-sm">EXEMPLE 2</h4>
+                    <div class="text-box">
+                        <strong>Texte :</strong><br>
+                        « Sophie est ravie de recevoir un cadeau pour son anniversaire. Elle sourit et remercie ses amis avec joie. »
+                    </div>
+                    <p><strong>Question :</strong> Que signifie probablement le mot « ravie » dans ce texte ?</p>
+                    <ul class="list-none pl-0">
+                        <li>A. Très triste.</li>
+                        <li>B. Très contente.</li>
+                        <li>C. Très fatiguée.</li>
+                    </ul>
+
+                    <hr class="my-6 border-beige">
+                    <h4 class="text-warmBrown font-bold text-lg mb-4">RÉPONSES ET EXPLICATIONS</h4>
+                    
+                    <p><strong>Exemple 1</strong></p>
+                    <p><strong>Réponse : A. Une température basse.</strong><br>
+                    <span class="text-sm text-gray-600">Penjelasan: Kata « manteau », « écharpe » dan « gants » merupakan petunjuk bahwa cuacanya dingin. Jadi, « froid » berarti dingin.</span></p>
+
+                    <p class="mt-4"><strong>Exemple 2</strong></p>
+                    <p><strong>Réponse : B. Très contente.</strong><br>
+                    <span class="text-sm text-gray-600">Penjelasan: Sophie tersenyum dan berterima kasih kepada teman-temannya karena mendapat hadiah. Hal tersebut menunjukkan bahwa ia merasa sangat senang.</span></p>
+                `
+            },
+            {
+                id: 4,
+                title: "MATIÈRE 4",
+                subtitle: "IDENTIFIER LE TYPE ET LE BUT DU TEXTE (Mengenali jenis dan tujuan teks)",
+                content: `
+                    <p>Pada bagian ini, kamu belajar mengenali bentuk dan tujuan sebuah teks. Setiap teks memiliki fungsi yang berbeda, misalnya memberikan informasi, mengundang seseorang, atau menawarkan sesuatu.</p>
+                    <p><strong>Jenis teks yang umum ditemukan pada tingkat A2:</strong></p>
+                    <ul>
+                        <li>Un message : pesan</li>
+                        <li>Un e-mail : surat elektronik</li>
+                        <li>Une annonce : pengumuman</li>
+                        <li>Une invitation : undangan</li>
+                        <li>Une publicité : iklan</li>
+                        <li>Un programme : jadwal atau susunan acara</li>
+                        <li>Une affiche : poster</li>
+                        <li>Un article court : artikel pendek</li>
+                    </ul>
+                    <p><strong>Tujuan teks:</strong></p>
+                    <ul>
+                        <li>Informer : memberikan informasi.</li>
+                        <li>Inviter : mengundang.</li>
+                        <li>Raconter : menceritakan.</li>
+                        <li>Décrire : menggambarkan.</li>
+                        <li>Proposer : menawarkan.</li>
+                    </ul>
+
+                    <h4 class="text-burgundy font-bold mt-6 mb-2 uppercase text-sm">EXEMPLE 1</h4>
+                    <div class="text-box">
+                        <strong>Texte :</strong><br>
+                        « GRANDE PROMOTION !<br><br>
+                        Notre magasin propose une réduction de 30 % sur tous les vêtements du 10 au 15 novembre. Venez profiter de nos offres spéciales ! »
+                    </div>
+                    <p><strong>Questions :</strong></p>
+                    <ol>
+                        <li>Quel est le type de ce document ?</li>
+                        <li>Quel est le but de ce texte ?</li>
+                        <li>Quelle est la réduction proposée ?</li>
+                    </ol>
+
+                    <h4 class="text-burgundy font-bold mt-6 mb-2 uppercase text-sm">EXEMPLE 2</h4>
+                    <div class="text-box">
+                        <strong>Texte :</strong><br>
+                        « Salut Emma !<br><br>
+                        Je t'invite à mon anniversaire samedi prochain à 16 h chez moi. Nous allons manger un gâteau, écouter de la musique et jouer ensemble. J'espère que tu viendras !<br><br>
+                        À bientôt, Julie »
+                    </div>
+                    <p><strong>Questions :</strong></p>
+                    <ol>
+                        <li>Quel est le type de ce document ?</li>
+                        <li>Quel est le but de ce texte ?</li>
+                        <li>Quand aura lieu l'anniversaire ?</li>
+                    </ol>
+
+                    <hr class="my-6 border-beige">
+                    <h4 class="text-warmBrown font-bold text-lg mb-4">RÉPONSES ET EXPLICATIONS</h4>
+                    
+                    <p><strong>Exemple 1</strong></p>
+                    <p><strong>1. Une publicité.</strong><br><span class="text-sm text-gray-600">Penjelasan: Teks tersebut merupakan iklan karena menawarkan promosi dari sebuah toko.</span></p>
+                    <p><strong>2. Proposer une promotion aux clients.</strong><br><span class="text-sm text-gray-600">Penjelasan: Tujuannya adalah menarik pelanggan untuk membeli pakaian dengan diskon.</span></p>
+                    <p><strong>3. Une réduction de 30 %.</strong><br><span class="text-sm text-gray-600">Penjelasan: Besarnya diskon disebutkan secara langsung dalam teks.</span></p>
+
+                    <p class="mt-4"><strong>Exemple 2</strong></p>
+                    <p><strong>1. Une invitation.</strong><br><span class="text-sm text-gray-600">Penjelasan: Teks tersebut merupakan undangan karena Julie mengajak Emma untuk datang ke pesta ulang tahunnya.</span></p>
+                    <p><strong>2. Inviter Emma à son anniversaire.</strong><br><span class="text-sm text-gray-600">Penjelasan: Tujuan teks adalah mengundang Emma untuk menghadiri pesta ulang tahun.</span></p>
+                    <p><strong>3. Samedi prochain à 16 h.</strong><br><span class="text-sm text-gray-600">Penjelasan: Hari dan waktu acara tercantum pada kalimat kedua.</span></p>
+                `
+            },
+            {
+                id: 5,
+                title: "MATIÈRE 5",
+                subtitle: "COMPRENDRE LES RELATIONS ENTRE LES INFORMATIONS (Memahami hubungan antarinformasi)",
+                content: `
+                    <p>Pada bagian ini, kamu belajar memahami hubungan antara satu informasi dengan informasi lainnya. Perhatikan kata penghubung yang menunjukkan alasan, akibat, pertentangan, atau urutan kejadian.</p>
+                    <p><strong>Kata penghubung yang sering digunakan:</strong></p>
+                    <ul>
+                        <li>Et : dan (penambahan)</li>
+                        <li>Mais : tetapi (pertentangan)</li>
+                        <li>Parce que : karena (alasan)</li>
+                        <li>Donc : jadi (akibat)</li>
+                        <li>Ensuite : kemudian (urutan)</li>
+                        <li>Enfin : akhirnya (urutan akhir)</li>
+                        <li>Aussi : juga (penambahan)</li>
+                    </ul>
+
+                    <h4 class="text-burgundy font-bold mt-6 mb-2 uppercase text-sm">EXEMPLE 1</h4>
+                    <div class="text-box">
+                        <strong>Texte :</strong><br>
+                        « Paul reste chez lui parce qu'il est malade. Il ne va pas à l'école aujourd'hui. »
+                    </div>
+                    <p><strong>Questions :</strong></p>
+                    <ol>
+                        <li>Pourquoi Paul reste-t-il chez lui ?</li>
+                        <li>Quel mot indique la raison ?</li>
+                    </ol>
+
+                    <h4 class="text-burgundy font-bold mt-6 mb-2 uppercase text-sm">EXEMPLE 2</h4>
+                    <div class="text-box">
+                        <strong>Texte :</strong><br>
+                        « Il pleut beaucoup, donc Marie prend un parapluie avant de sortir. Elle aime marcher, mais elle préfère rester chez elle quand il pleut. »
+                    </div>
+                    <p><strong>Questions :</strong></p>
+                    <ol>
+                        <li>Pourquoi Marie prend-elle un parapluie ?</li>
+                        <li>Quel mot exprime une conséquence ?</li>
+                        <li>Quel mot exprime une opposition ?</li>
+                    </ol>
+
+                    <h4 class="text-burgundy font-bold mt-6 mb-2 uppercase text-sm">EXEMPLE 3</h4>
+                    <div class="text-box">
+                        <strong>Texte :</strong><br>
+                        « Le matin, Julie prépare son petit-déjeuner. Ensuite, elle prend une douche et s'habille. Enfin, elle part au travail. »
+                    </div>
+                    <p><strong>Questions :</strong></p>
+                    <ol>
+                        <li>Que fait Julie après le petit-déjeuner ?</li>
+                        <li>Quel mot indique la dernière activité ?</li>
+                    </ol>
+
+                    <hr class="my-6 border-beige">
+                    <h4 class="text-warmBrown font-bold text-lg mb-4">RÉPONSES ET EXPLICATIONS</h4>
+                    
+                    <p><strong>Exemple 1</strong></p>
+                    <p><strong>1. Parce qu'il est malade.</strong><br><span class="text-sm text-gray-600">Penjelasan: Paul tetap di rumah karena sedang sakit.</span></p>
+                    <p><strong>2. Parce que.</strong><br><span class="text-sm text-gray-600">Penjelasan: Kata « parce que » menunjukkan alasan atau penyebab.</span></p>
+
+                    <p class="mt-4"><strong>Exemple 2</strong></p>
+                    <p><strong>1. Parce qu'il pleut beaucoup.</strong><br><span class="text-sm text-gray-600">Penjelasan: Marie membawa payung karena hujan deras.</span></p>
+                    <p><strong>2. Donc.</strong><br><span class="text-sm text-gray-600">Penjelasan: Kata « donc » menunjukkan akibat dari suatu keadaan.</span></p>
+                    <p><strong>3. Mais.</strong><br><span class="text-sm text-gray-600">Penjelasan: Kata « mais » menunjukkan pertentangan antara suka berjalan kaki dan lebih memilih di rumah saat hujan.</span></p>
+
+                    <p class="mt-4"><strong>Exemple 3</strong></p>
+                    <p><strong>1. Elle prend une douche et s'habille.</strong><br><span class="text-sm text-gray-600">Penjelasan: Setelah sarapan, Julie mandi dan berpakaian.</span></p>
+                    <p><strong>2. Enfin.</strong><br><span class="text-sm text-gray-600">Penjelasan: Kata « enfin » menunjukkan kegiatan terakhir dalam urutan tersebut.</span></p>
+                `
+            },
+            {
+                id: 6,
+                title: "MATIÈRE 6",
+                subtitle: "FAIRE DES DÉDUCTIONS SIMPLES (Membuat kesimpulan sederhana)",
+                content: `
+                    <p>Pada bagian ini, kamu belajar menarik kesimpulan berdasarkan petunjuk yang terdapat dalam teks. Jawabannya tidak selalu ditulis secara langsung, sehingga kamu perlu menghubungkan beberapa informasi.</p>
+                    <p><strong>Cara melakukannya:</strong></p>
+                    <ul>
+                        <li><strong>Lire attentivement :</strong> membaca dengan teliti.</li>
+                        <li><strong>Observer les indices :</strong> memperhatikan petunjuk.</li>
+                        <li><strong>Relier les informations :</strong> menghubungkan informasi.</li>
+                        <li><strong>Trouver une réponse logique :</strong> menemukan kesimpulan yang masuk akal.</li>
+                    </ul>
+
+                    <h4 class="text-burgundy font-bold mt-6 mb-2 uppercase text-sm">EXEMPLE 1</h4>
+                    <div class="text-box">
+                        <strong>Texte :</strong><br>
+                        « Il est 7 h 45. Thomas prend rapidement son sac et sort de la maison. Son cours commence à 8 h et son université se trouve à quinze minutes de chez lui. »
+                    </div>
+                    <p><strong>Questions :</strong></p>
+                    <ol>
+                        <li>Où va probablement Thomas ?</li>
+                        <li>Pourquoi sort-il rapidement de la maison ?</li>
+                        <li>Est-il possible qu'il arrive en retard ? Pourquoi ?</li>
+                    </ol>
+
+                    <h4 class="text-burgundy font-bold mt-6 mb-2 uppercase text-sm">EXEMPLE 2</h4>
+                    <div class="text-box">
+                        <strong>Texte :</strong><br>
+                        « Aujourd'hui, le ciel est gris et le vent souffle fort. Les habitants ferment leurs fenêtres et certains prennent leurs parapluies avant de sortir. »
+                    </div>
+                    <p><strong>Questions :</strong></p>
+                    <ol>
+                        <li>Quel temps fait-il probablement ?</li>
+                        <li>Pourquoi les habitants prennent-ils leurs parapluies ?</li>
+                    </ol>
+
+                    <hr class="my-6 border-beige">
+                    <h4 class="text-warmBrown font-bold text-lg mb-4">RÉPONSES ET EXPLICATIONS</h4>
+                    
+                    <p><strong>Exemple 1</strong></p>
+                    <p><strong>1. Il va probablement à l'université.</strong><br><span class="text-sm text-gray-600">Penjelasan: Thomas memiliki kelas pukul 08.00, sehingga kemungkinan besar ia sedang menuju universitas.</span></p>
+                    <p><strong>2. Parce que son cours commence à 8 h.</strong><br><span class="text-sm text-gray-600">Penjelasan: Ia keluar dengan terburu-buru karena waktu masuk kelas sudah dekat.</span></p>
+                    <p><strong>3. Oui, parce qu'il lui faut quinze minutes pour arriver à l'université.</strong><br><span class="text-sm text-gray-600">Penjelasan: Thomas berangkat pukul 07.45, sedangkan perjalanan membutuhkan waktu 15 menit. Jadi, ia kemungkinan tiba tepat pukul 08.00.</span></p>
+
+                    <p class="mt-4"><strong>Exemple 2</strong></p>
+                    <p><strong>1. Il va probablement pleuvoir.</strong><br><span class="text-sm text-gray-600">Penjelasan: Langit mendung, angin bertiup kencang, dan beberapa orang membawa payung. Petunjuk tersebut menunjukkan kemungkinan akan turun hujan.</span></p>
+                    <p><strong>2. Parce qu'ils pensent qu'il va pleuvoir.</strong><br><span class="text-sm text-gray-600">Penjelasan: Payung dibawa sebagai persiapan jika hujan turun.</span></p>
+                `
+            },
+            {
+                id: 7,
+                title: "BAGIAN TAMBAHAN",
+                subtitle: "STRATÉGIES DE LECTURE ET OBJECTIFS",
+                content: `
+                    <h4 class="text-burgundy font-bold text-lg mb-2">STRATÉGIES DE LECTURE (Strategi membaca)</h4>
+                    <p>Untuk memahami teks dengan lebih mudah, gunakan tiga strategi berikut:</p>
+                    <ol>
+                        <li><strong>LE SURVOL</strong><br>Membaca teks secara cepat untuk mengetahui topik dan gambaran umum.</li>
+                        <li><strong>LE REPÉRAGE</strong><br>Mencari informasi tertentu, seperti nama, tanggal, tempat, harga, dan waktu.</li>
+                        <li><strong>LA LECTURE DÉTAILLÉE</strong><br>Membaca teks dengan lebih teliti untuk memahami informasi dan hubungan antarkalimat.</li>
+                    </ol>
+
+                    <hr class="my-6 border-beige">
+
+                    <h4 class="text-burgundy font-bold text-lg mb-2">OBJECTIFS D'APPRENTISSAGE (Tujuan pembelajaran)</h4>
+                    <p>Setelah mempelajari materi ini, kamu diharapkan mampu:</p>
+                    <ul>
+                        <li>Memahami topik dan gagasan utama dari teks sederhana.</li>
+                        <li>Menemukan informasi khusus dalam berbagai jenis teks.</li>
+                        <li>Memahami kosakata berdasarkan konteks.</li>
+                        <li>Mengenali jenis dan tujuan sebuah teks.</li>
+                        <li>Memahami hubungan antara informasi dalam teks.</li>
+                        <li>Membuat kesimpulan sederhana berdasarkan isi bacaan.</li>
+                    </ul>
+                `
+            }
+        ];
+
+        // ================= DATA: QUIZ =================
+        const texts = [
+            {
+                id: 1,
+                title: "TEXTE 1 – MESSAGE PERSONNEL",
+                content: "Salut Emma,<br><br>Comment vas-tu ? Je passe mes vacances chez mes grands-parents à la campagne. Chaque matin, j'aide mon grand-père dans le jardin. L'après-midi, je fais du vélo avec ma cousine. Le soir, nous regardons souvent un film ensemble. Je rentre à Paris dimanche prochain. J'espère te voir bientôt !<br><br>À bientôt,<br>Julie"
+            },
+            {
+                id: 2,
+                title: "TEXTE 2 – ANNONCE",
+                content: "FÊTE DE LA MUSIQUE<br><br>La ville organise une fête de la musique le samedi 15 juin, de 14 h à 22 h, sur la place centrale.<br><br>Au programme :<br>- Concerts de musique française.<br>- Spectacles de danse.<br>- Activités pour les enfants.<br><br>Entrée gratuite pour tout le monde.<br><br>Venez nombreux !"
+            },
+            {
+                id: 3,
+                title: "TEXTE 3 – PUBLICITÉ",
+                content: "LIBRAIRIE DU CENTRE<br><br>Vous aimez lire ? Découvrez notre grande sélection de livres !<br><br>Cette semaine, profitez de 20 % de réduction sur tous les romans.<br><br>Adresse : 12 rue Victor Hugo, Lyon.<br><br>Horaires :<br>- Lundi – Vendredi : 9 h – 19 h<br>- Samedi : 10 h – 18 h<br>- Dimanche : fermé<br><br>Venez découvrir nos nouveautés !"
+            },
+            {
+                id: 4,
+                title: "TEXTE 4 – ARTICLE COURT",
+                content: "UNE JOURNÉE SANS VOITURE<br><br>Dimanche dernier, la ville de Nantes a organisé une journée sans voiture dans le centre-ville. Les habitants ont été invités à utiliser le vélo, les transports en commun ou à marcher.<br><br>Plusieurs rues étaient fermées aux voitures. Des activités sportives et des animations ont également été organisées pour les familles.<br><br>Marie, une habitante de la ville, a beaucoup apprécié cette journée. Selon elle, l'air était plus agréable et les rues étaient plus calmes."
+            },
+            {
+                id: 5,
+                title: "TEXTE 5 – E-MAIL",
+                content: "De : Thomas<br>À : Pierre<br>Objet : Mon nouveau travail<br><br>Salut Pierre,<br><br>J'ai une bonne nouvelle ! Depuis lundi, je travaille dans un petit restaurant près de chez moi. Je commence à 10 heures et je termine à 18 heures. Mes collègues sont très sympathiques et le directeur est gentil.<br><br>Le travail est parfois difficile parce qu'il y a beaucoup de clients le week-end. Mais j'aime beaucoup cette expérience. Je gagne aussi un peu d'argent pour économiser et voyager cet été.<br><br>À bientôt,<br>Thomas"
+            }
+        ];
+
+        const questionsData = [
+            // TEXT 1
+            { id: 1, textId: 1, q: "Où Julie passe-t-elle ses vacances ?", options: ["À Paris.", "À la campagne.", "À la montagne.", "À la plage."], correct: 1, explication: "Julie passe ses vacances chez ses grands-parents à la campagne." },
+            { id: 2, textId: 1, q: "Que fait Julie chaque matin ?", options: ["Elle regarde un film.", "Elle fait du vélo.", "Elle aide son grand-père.", "Elle visite Paris."], correct: 2, explication: "Le texte indique qu'elle aide son grand-père dans le jardin chaque matin." },
+            { id: 3, textId: 1, q: "Avec qui fait-elle du vélo ?", options: ["Avec sa mère.", "Avec son amie.", "Avec son grand-père.", "Avec sa cousine."], correct: 3, explication: "Julie fait du vélo avec sa cousine l'après-midi." },
+            { id: 4, textId: 1, q: "Quand Julie rentre-t-elle à Paris ?", options: ["Samedi prochain.", "Dimanche prochain.", "Lundi prochain.", "Vendredi prochain."], correct: 1, explication: "Julie écrit qu'elle rentre à Paris dimanche prochain." },
+            
+            // TEXT 2
+            { id: 5, textId: 2, q: "Quel événement est organisé par la ville ?", options: ["Une fête de la danse.", "Une fête de la musique.", "Une exposition de peinture.", "Un marché de Noël."], correct: 1, explication: "L'annonce présente une fête de la musique organisée par la ville." },
+            { id: 6, textId: 2, q: "Où se déroule l'événement ?", options: ["À la bibliothèque.", "Dans un restaurant.", "Sur la place centrale.", "Dans une école."], correct: 2, explication: "L'événement se déroule sur la place centrale." },
+            { id: 7, textId: 2, q: "À quelle heure commence la fête ?", options: ["À 10 h.", "À 12 h.", "À 14 h.", "À 22 h."], correct: 2, explication: "La fête commence à 14 heures et se termine à 22 heures." },
+            { id: 8, textId: 2, q: "Combien coûte l'entrée ?", options: ["5 euros.", "10 euros.", "15 euros.", "C'est gratuit."], correct: 3, explication: "L'annonce précise que l'entrée est gratuite pour tout le monde." },
+            
+            // TEXT 3
+            { id: 9, textId: 3, q: "Quel produit est en promotion ?", options: ["Les magazines.", "Les journaux.", "Les romans.", "Les dictionnaires."], correct: 2, explication: "La librairie propose une réduction sur tous les romans." },
+            { id: 10, textId: 3, q: "Quelle réduction propose la librairie ?", options: ["10 %.", "15 %.", "20 %.", "30 %."], correct: 2, explication: "La publicité indique une réduction de 20 % cette semaine." },
+            { id: 11, textId: 3, q: "Quel jour la librairie est-elle fermée ?", options: ["Lundi.", "Mercredi.", "Samedi.", "Dimanche."], correct: 3, explication: "Les horaires indiquent que la librairie est fermée le dimanche." },
+            { id: 12, textId: 3, q: "Où se trouve la librairie ?", options: ["À Paris.", "À Lyon.", "À Marseille.", "À Bordeaux."], correct: 1, explication: "L'adresse de la librairie se trouve à Lyon." },
+            
+            // TEXT 4
+            { id: 13, textId: 4, q: "Quel est le sujet principal de cet article ?", options: ["Une journée de shopping.", "Une journée sans voiture.", "Une compétition sportive.", "Une fête de famille."], correct: 1, explication: "L'article présente une journée organisée pour limiter l'utilisation des voitures dans le centre-ville." },
+            { id: 14, textId: 4, q: "Dans quelle ville cet événement a-t-il eu lieu ?", options: ["Paris.", "Lyon.", "Nantes.", "Nice."], correct: 2, explication: "Le texte indique que l'événement a été organisé dans la ville de Nantes." },
+            { id: 15, textId: 4, q: "Quels moyens de transport les habitants pouvaient-ils utiliser ?", options: ["La voiture et le taxi.", "Le vélo et les transports en commun.", "L'avion et le train.", "La moto et la voiture."], correct: 1, explication: "Les habitants étaient invités à utiliser le vélo, les transports en commun ou à marcher." },
+            { id: 16, textId: 4, q: "Pourquoi Marie a-t-elle apprécié cette journée ?", options: ["Parce que les magasins étaient ouverts.", "Parce qu'il y avait beaucoup de voitures.", "Parce que l'air était plus agréable et les rues plus calmes.", "Parce qu'elle a voyagé dans une autre ville."], correct: 2, explication: "Marie apprécie la journée parce que l'air est plus agréable et les rues sont plus calmes." },
+            
+            // TEXT 5
+            { id: 17, textId: 5, q: "Où travaille Thomas ?", options: ["Dans un hôtel.", "Dans un restaurant.", "Dans une bibliothèque.", "Dans un magasin."], correct: 1, explication: "Thomas explique qu'il travaille dans un petit restaurant près de chez lui." },
+            { id: 18, textId: 5, q: "À quelle heure termine-t-il son travail ?", options: ["À 10 heures.", "À 16 heures.", "À 17 heures.", "À 18 heures."], correct: 3, explication: "Il commence à 10 heures et termine à 18 heures." },
+            { id: 19, textId: 5, q: "Pourquoi son travail est-il parfois difficile ?", options: ["Parce que ses collègues sont méchants.", "Parce qu'il travaille très loin de chez lui.", "Parce qu'il y a beaucoup de clients le week-end.", "Parce que le restaurant est fermé."], correct: 2, explication: "Thomas explique que son travail est parfois difficile à cause du grand nombre de clients le week-end." },
+            { id: 20, textId: 5, q: "Pourquoi Thomas économise-t-il de l'argent ?", options: ["Pour acheter une voiture.", "Pour voyager cet été.", "Pour acheter une maison.", "Pour étudier à Paris."], correct: 1, explication: "Thomas économise de l'argent pour pouvoir voyager pendant les vacances d'été." }
+        ];
+
+        // ================= LOGIC & STATE =================
+        let currentMatiereIndex = 0;
+        
+        let quizAnswers = new Array(20).fill(null);
+        let quizValidated = new Array(20).fill(false);
+        let currentQuizIndex = 0;
+
+        // Navigation
+        function navigate(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.add('hidden');
+                page.classList.remove('fade-in');
+            });
+            const targetPage = document.getElementById(pageId);
+            targetPage.classList.remove('hidden');
+            // small trick to re-trigger animation
+            void targetPage.offsetWidth;
+            targetPage.classList.add('fade-in');
+            window.scrollTo(0, 0);
+        }
+
+        // --- MATIERES LOGIC ---
+        function renderMatieresMenu() {
+            const list = document.getElementById('matieres-list');
+            list.innerHTML = '';
+            matieresData.forEach((m, index) => {
+                const card = document.createElement('button');
+                card.className = "glass-card hover:bg-white text-left p-6 rounded-2xl transition group flex flex-col justify-between";
+                card.onclick = () => openMatiere(index);
+                card.innerHTML = `
+                    <div>
+                        <span class="text-sm font-bold text-burgundy tracking-widest uppercase mb-2 block">${m.title}</span>
+                        <h3 class="font-serif text-lg font-bold text-warmBrown group-hover:text-burgundy transition">${m.subtitle.split(' (')[0]}</h3>
+                        ${m.subtitle.includes('(') ? `<p class="text-sm text-textDark mt-1 italic">${m.subtitle.substring(m.subtitle.indexOf('('))}</p>` : ''}
+                    </div>
+                    <div class="mt-4 flex items-center text-sm font-medium text-burgundy opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
+                        Lire la suite <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </div>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        function openMatiere(index) {
+            currentMatiereIndex = index;
+            const m = matieresData[index];
+            document.getElementById('matiere-title').innerText = m.title;
+            document.getElementById('matiere-subtitle').innerText = m.subtitle;
+            document.getElementById('matiere-content').innerHTML = m.content;
+            
+            // Buttons
+            document.getElementById('btn-prev-matiere').disabled = index === 0;
+            document.getElementById('btn-next-matiere').disabled = index === matieresData.length - 1;
+            
+            navigate('matiere-detail');
+        }
+
+        document.getElementById('btn-prev-matiere').addEventListener('click', () => {
+            if (currentMatiereIndex > 0) openMatiere(currentMatiereIndex - 1);
+        });
+        document.getElementById('btn-next-matiere').addEventListener('click', () => {
+            if (currentMatiereIndex < matieresData.length - 1) openMatiere(currentMatiereIndex + 1);
+        });
+
+        // --- QUIZ LOGIC ---
+        function startQuiz() {
+            quizAnswers = new Array(20).fill(null);
+            quizValidated = new Array(20).fill(false);
+            currentQuizIndex = 0;
+            renderQuizQuestion();
+            navigate('quiz-container');
+        }
+
+        function renderQuizQuestion() {
+            const q = questionsData[currentQuizIndex];
+            const t = texts.find(text => text.id === q.textId);
+            const isValide = quizValidated[currentQuizIndex];
+
+            // Progress bar
+            const progressPct = ((currentQuizIndex + 1) / questionsData.length) * 100;
+            document.getElementById('quiz-progress').style.width = `${progressPct}%`;
+            
+            // Text area
+            document.getElementById('quiz-text-type').innerHTML = t.title;
+            document.getElementById('quiz-text-content').innerHTML = t.content;
+
+            // Question area
+            document.getElementById('quiz-q-num').innerText = `Question ${currentQuizIndex + 1} / 20`;
+            document.getElementById('quiz-question-text').innerText = q.q;
+
+            // Options
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+            const labels = ['A', 'B', 'C', 'D'];
+            
+            q.options.forEach((opt, idx) => {
+                const label = document.createElement('label');
+                
+                let bgClass = "bg-white";
+                let borderClass = "border-beige";
+                let shadowClass = "";
+                let textClass = "text-textDark";
+                let letterClass = "text-warmBrown";
+                let circleBorder = "border-beige";
+                let circleBg = "";
+                let circleIcon = "";
+
+                if (isValide) {
+                    if (idx === q.correct) {
+                        bgClass = "bg-green-50";
+                        borderClass = "border-green-500";
+                        shadowClass = "shadow-[0_0_0_1px_#22c55e]";
+                        textClass = "text-green-800";
+                        letterClass = "text-green-700";
+                        circleBorder = "border-green-500";
+                        circleBg = "bg-green-500";
+                        circleIcon = `<svg class="w-full h-full text-white p-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>`;
+                    } else if (quizAnswers[currentQuizIndex] === idx) {
+                        bgClass = "bg-red-50";
+                        borderClass = "border-red-500";
+                        shadowClass = "shadow-[0_0_0_1px_#ef4444]";
+                        textClass = "text-red-800";
+                        letterClass = "text-red-700";
+                        circleBorder = "border-red-500";
+                        circleBg = "bg-red-500";
+                        circleIcon = `<svg class="w-full h-full text-white p-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"></path></svg>`;
+                    } else {
+                        textClass = "text-gray-400";
+                        letterClass = "text-gray-400";
+                        circleBorder = "border-gray-200";
+                    }
+                }
+                
+                const isChecked = quizAnswers[currentQuizIndex] === idx ? 'checked' : '';
+                const isDisabled = isValide ? 'disabled' : '';
+                const cursorClass = isValide ? 'cursor-default' : 'cursor-pointer group option-label';
+                
+                label.className = `block relative ${cursorClass}`;
+                label.innerHTML = `
+                    <input type="radio" name="q_option" value="${idx}" class="absolute opacity-0 w-0 h-0" ${isChecked} ${isDisabled} onchange="selectAnswer(${idx})">
+                    <div class="option-content border ${borderClass} ${bgClass} ${shadowClass} rounded-xl p-4 flex items-start transition-all">
+                        <div class="radio-circle flex-shrink-0 w-5 h-5 border-2 ${circleBorder} ${circleBg} rounded-full mr-4 mt-0.5 relative transition-colors">
+                            ${circleIcon}
+                        </div>
+                        <div>
+                            <span class="font-bold ${letterClass} mr-2">${labels[idx]}.</span>
+                            <span class="${textClass}">${opt}</span>
+                        </div>
+                    </div>
+                `;
+                optionsContainer.appendChild(label);
+            });
+
+            // Feedback area
+            const feedbackContainer = document.getElementById('quiz-feedback');
+            if (isValide) {
+                const isCorrect = quizAnswers[currentQuizIndex] === q.correct;
+                feedbackContainer.innerHTML = `
+                    <div class="p-4 rounded-xl border ${isCorrect ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'}">
+                        <div class="font-bold text-lg ${isCorrect ? 'text-green-700' : 'text-red-700'} mb-2 flex items-center">
+                            ${isCorrect 
+                                ? '<svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Bonne réponse !' 
+                                : '<svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg> Mauvaise réponse.'}
+                        </div>
+                        <div class="text-sm text-textDark">
+                            <span class="font-bold block mb-1">Explication :</span> ${q.explication}
+                        </div>
+                    </div>
+                `;
+                feedbackContainer.classList.remove('hidden');
+            } else {
+                feedbackContainer.classList.add('hidden');
+                feedbackContainer.innerHTML = '';
+            }
+
+            // Buttons
+            document.getElementById('btn-prev-q').disabled = currentQuizIndex === 0;
+            const btnValider = document.getElementById('btn-valider-q');
+            const btnNext = document.getElementById('btn-next-q');
+            
+            if (!isValide) {
+                btnValider.classList.remove('hidden');
+                btnNext.classList.add('hidden');
+                btnValider.disabled = quizAnswers[currentQuizIndex] === null;
+            } else {
+                btnValider.classList.add('hidden');
+                btnNext.classList.remove('hidden');
+                
+                if (currentQuizIndex === questionsData.length - 1) {
+                    btnNext.innerText = "Terminer";
+                    btnNext.onclick = confirmSubmit;
+                } else {
+                    btnNext.innerText = "Suivant";
+                    btnNext.onclick = () => { currentQuizIndex++; renderQuizQuestion(); };
+                }
+            }
+
+            renderQuizIndicators();
+        }
+
+        function selectAnswer(optionIndex) {
+            if (quizValidated[currentQuizIndex]) return; // Prevent change if validated
+            quizAnswers[currentQuizIndex] = optionIndex;
+            document.getElementById('btn-valider-q').disabled = false;
+            renderQuizIndicators(); // update dot colors
+        }
+        
+        function validateAnswer() {
+            quizValidated[currentQuizIndex] = true;
+            renderQuizQuestion();
+        }
+
+        function renderQuizIndicators() {
+            const container = document.getElementById('quiz-indicators');
+            container.innerHTML = '';
+            for (let i = 0; i < questionsData.length; i++) {
+                const btn = document.createElement('button');
+                btn.className = `w-8 h-8 rounded-full text-xs font-bold transition-all focus:outline-none ${i === currentQuizIndex ? 'ring-2 ring-burgundy ring-offset-1' : ''}`;
+                
+                if (quizValidated[i]) {
+                    const isCorrect = quizAnswers[i] === questionsData[i].correct;
+                    if (isCorrect) {
+                        btn.classList.add('bg-green-500', 'text-white');
+                    } else {
+                        btn.classList.add('bg-red-500', 'text-white');
+                    }
+                } else if (quizAnswers[i] !== null) {
+                    btn.classList.add('bg-burgundyLight', 'text-white');
+                } else {
+                    btn.classList.add('bg-beige', 'text-warmBrown');
+                }
+                
+                btn.innerText = i + 1;
+                btn.onclick = () => {
+                    currentQuizIndex = i;
+                    renderQuizQuestion();
+                };
+                container.appendChild(btn);
+            }
+        }
+
+        document.getElementById('btn-prev-q').addEventListener('click', () => {
+            if (currentQuizIndex > 0) {
+                currentQuizIndex--;
+                renderQuizQuestion();
+            }
+        });
+
+        // --- CONFIRM & SUBMIT LOGIC ---
+        function confirmSubmit() {
+            const unanswered = quizValidated.filter(v => v === false).length;
+            const warningEl = document.getElementById('unanswered-warning');
+            
+            if (unanswered > 0) {
+                warningEl.innerHTML = `<span class="font-bold text-red-600">Attention !</span> Vous n'avez pas validé ${unanswered} question(s).`;
+            } else {
+                warningEl.innerHTML = "Vous avez validé toutes les questions.";
+            }
+            
+            document.getElementById('confirm-modal').classList.remove('hidden');
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirm-modal').classList.add('hidden');
+        }
+
+        function submitQuiz() {
+            closeConfirmModal();
+            calculateResults();
+        }
+
+        function calculateResults() {
+            let correctCount = 0;
+            const labels = ['A', 'B', 'C', 'D'];
+            const correctionList = document.getElementById('correction-list');
+            correctionList.innerHTML = '';
+
+            questionsData.forEach((q, idx) => {
+                const userAnswer = quizAnswers[idx];
+                const isCorrect = userAnswer === q.correct;
+                if (isCorrect) correctCount++;
+
+                const card = document.createElement('div');
+                card.className = "bg-white border border-beige rounded-2xl p-6 shadow-sm";
+                
+                const statusColor = isCorrect ? 'text-green-600' : 'text-red-600';
+                const statusIcon = isCorrect 
+                    ? `<svg class="w-6 h-6 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`
+                    : `<svg class="w-6 h-6 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>`;
+                const statusBg = isCorrect ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200';
+
+                let answerDisplay = `<div class="p-3 rounded-lg border ${statusBg} mb-3 flex items-start">
+                    <div class="${statusColor} flex-shrink-0 mt-0.5">${statusIcon}</div>
+                    <div class="ml-2">
+                        <span class="text-sm text-gray-500 block mb-1">Votre réponse :</span>
+                        <strong class="${statusColor}">${userAnswer !== null ? labels[userAnswer] + '. ' + q.options[userAnswer] : 'Aucune réponse'}</strong>
+                    </div>
+                </div>`;
+
+                if (!isCorrect) {
+                    answerDisplay += `<div class="p-3 rounded-lg border bg-green-50 border-green-200 mb-3 flex items-start">
+                        <div class="text-green-600 flex-shrink-0 mt-0.5"><svg class="w-6 h-6 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div>
+                        <div class="ml-2">
+                            <span class="text-sm text-gray-500 block mb-1">Bonne réponse :</span>
+                            <strong class="text-green-700">${labels[q.correct]}. ${q.options[q.correct]}</strong>
+                        </div>
+                    </div>`;
+                }
+
+                card.innerHTML = `
+                    <div class="flex items-start mb-4 border-b border-beige pb-4">
+                        <span class="bg-warmBrown text-white font-bold w-8 h-8 flex items-center justify-center rounded-full mr-3 flex-shrink-0">${idx + 1}</span>
+                        <p class="text-warmBrown font-medium text-lg pt-1">${q.q}</p>
+                    </div>
+                    ${answerDisplay}
+                    <div class="mt-4 text-sm bg-cream p-4 rounded-xl border border-beige">
+                        <strong class="text-burgundy block mb-1">Explication :</strong>
+                        <span class="text-textDark">${q.explication}</span>
+                    </div>
+                `;
+                correctionList.appendChild(card);
+            });
+
+            const totalScore = correctCount * 5;
+            const incorrectCount = 20 - correctCount;
+
+            // Animate Score Counting
+            let currentDisplayScore = 0;
+            const scoreText = document.getElementById('score-text');
+            const scorePath = document.getElementById('score-circle-path');
+            
+            document.getElementById('correct-count').innerText = correctCount;
+            document.getElementById('incorrect-count').innerText = incorrectCount;
+            
+            navigate('results-container');
+
+            const scoreInterval = setInterval(() => {
+                if (currentDisplayScore >= totalScore) {
+                    clearInterval(scoreInterval);
+                    scoreText.innerText = totalScore;
+                    scorePath.setAttribute('stroke-dasharray', `${totalScore}, 100`);
+                } else {
+                    currentDisplayScore++;
+                    scoreText.innerText = currentDisplayScore;
+                    scorePath.setAttribute('stroke-dasharray', `${currentDisplayScore}, 100`);
+                }
+            }, 20); // speed of animation
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMatieresMenu();
+        });
+
+    </script>
+</body>
+</html>
